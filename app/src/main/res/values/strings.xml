@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Gerenciador</string>
-    <string name="status">Status</string>
+    <string name="status">Status </string>
+    <string name="status_tarefa">Status: </string>
     <string name="salvar_tarefa">Salvar Tarefa</string>
-    <string name="data_de_vencimento">Data de Vencimento</string>
-    <string name="descri_o_da_tarefa">Descrição da Tarefa</string>
+    <string name="descricao_da_tarefa">Descrição da Tarefa</string>
     <string name="titulo_da_tarefa">Título da Tarefa</string>
     <string name="dd_mm_yyyy">dd/MM/yyyy</string>
+    <string name="prazo_final">Prazo final</string>
+    <string name="prazo_final_tarefa">Prazo final: </string>
+    <string name="buscar_tarefas">Buscar tarefas</string>
+    <string name="tarefas">Tarefas</string>
+    <string name="id_usuario">ID Usuario</string>
+    <string name="tag">Tag</string>
 </resources>

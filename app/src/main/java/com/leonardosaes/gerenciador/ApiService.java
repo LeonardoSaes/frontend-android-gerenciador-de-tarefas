@@ -33,11 +33,13 @@ public interface ApiService {
     @PATCH("/tarefa/{id}")
     Call<Task> atualizarTarefa(@Path("id") Long id, @Body Task tarefaAtualizada);
 
+    // Na interface ApiService
     @DELETE("/tarefa/{id}")
-    Call<Void> deletarTarefa(@Path("id") Long id);
+    Call<Void> excluirTarefa(
+            @Header("Authorization") String authToken,
+            @Path("id") Long id
+    );
 
-    @GET("/tarefa/listar/{id}")
-    Call<Task> buscarTarefaPorId(@Path("id") Long id);
 
     @GET("/tarefa/buscar-por-titulo")
     Call<List<Task>> buscarTarefasPorTitulo(@Query("titulo") String titulo);

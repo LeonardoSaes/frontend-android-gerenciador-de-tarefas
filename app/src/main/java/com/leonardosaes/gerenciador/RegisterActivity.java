@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Criar objeto RegisterRequest
         RegisterRequest registerRequest = new RegisterRequest(nome, email, senha);
 
-        // Chamar método de registo da API
+        // Chamar metodo de registro da API
         Call<RegisterResponse> call = apiService.registerUser(registerRequest);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override

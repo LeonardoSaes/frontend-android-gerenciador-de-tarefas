@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/descri_o_da_tarefa"
+        android:text="@string/descricao_da_tarefa"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/data_de_vencimento"
+        android:text="@string/prazo_final"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -59,7 +59,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tag"
+        android:text="@string/tag"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -72,7 +72,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ID Usuario"
+        android:text="@string/id_usuario"
         android:textSize="18sp"
         android:textStyle="bold" />
 
