@@ -1,4 +1,11 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.api;
+
+import com.leonardosaes.gerenciador.models.LoginRequest;
+import com.leonardosaes.gerenciador.models.LoginResponse;
+import com.leonardosaes.gerenciador.models.RegisterRequest;
+import com.leonardosaes.gerenciador.models.RegisterResponse;
+import com.leonardosaes.gerenciador.models.Task;
+import com.leonardosaes.gerenciador.models.TaskRequest;
 
 import java.util.List;
 
@@ -20,12 +27,11 @@ public interface ApiService {
     @POST("/auth/login")
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 
-    @POST("/tarefa/cadastrar") // Alterado para o endpoint correto
+    @POST("/tarefa/cadastrar")
     Call<Task> cadastrarTarefa(
-            @Header("Authorization") String authToken, // Adicione o Header de Autorização, se necessário
-            @Body TaskRequest taskRequest // Use TaskRequest no corpo da requisição
+            @Header("Authorization") String authToken,
+            @Body TaskRequest taskRequest
     );
-
 
     @GET("/tarefa/listar")
     Call<List<Task>> listarTarefas(@Header("Authorization") String authorization);
@@ -33,13 +39,11 @@ public interface ApiService {
     @PATCH("/tarefa/{id}")
     Call<Task> atualizarTarefa(@Path("id") Long id, @Body Task tarefaAtualizada);
 
-    // Na interface ApiService
     @DELETE("/tarefa/{id}")
     Call<Void> excluirTarefa(
             @Header("Authorization") String authToken,
             @Path("id") Long id
     );
-
 
     @GET("/tarefa/buscar-por-titulo")
     Call<List<Task>> buscarTarefasPorTitulo(@Query("titulo") String titulo);

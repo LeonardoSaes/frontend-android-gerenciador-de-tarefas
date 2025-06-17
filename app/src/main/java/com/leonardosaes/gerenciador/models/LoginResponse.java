@@ -1,4 +1,4 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.models;
 
 public class LoginResponse {
     private String token;

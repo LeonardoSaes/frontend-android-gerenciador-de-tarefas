@@ -50,11 +50,16 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edit_status_tarefa_nova_tarefa"
+
+    <Spinner
+        android:id="@+id/spinner_status_tarefa"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:background="@color/cardview_shadow_start_color"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:entries="@array/status_options" />
 
     <TextView
         android:layout_width="match_parent"
@@ -63,28 +68,25 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edit_tag_enum_nova_tarefa"
+    <Spinner
+        android:id="@+id/spinner_tag_enum"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
+        android:background="@color/cardview_shadow_start_color"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:padding="10dp"
+        android:entries="@array/tag_options" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/id_usuario"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/edit_id_usuario_nova_tarefa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
 
     <Button
         android:id="@+id/btn_salvar_nova_tarefa"
-        android:layout_width="wrap_content"
+        android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:text="@string/salvar_tarefa" />
+        android:text="@string/salvar_tarefa"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="10dp"
+
+        />
+
 </LinearLayout>

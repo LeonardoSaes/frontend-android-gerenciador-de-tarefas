@@ -1,7 +1,8 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.leonardosaes.gerenciador.utils.LocalDateDeserializer;
 
 import java.time.LocalDate;
 

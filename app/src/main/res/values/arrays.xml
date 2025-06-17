@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tag_options">
+        <item>BAIXA</item>
+        <item>MEDIA</item>
+        <item>ALTA</item>
+    </string-array>
+</resources>

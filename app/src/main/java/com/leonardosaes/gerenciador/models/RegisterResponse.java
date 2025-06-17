@@ -1,22 +1,22 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.models;
 
 public class RegisterResponse {
     private String message;
     private int userId;
 
-    public String getMessage() {
+    public String getMensagem() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMemsagem(String message) {
         this.message = message;
     }
 
-    public int getUserId() {
+    public int getId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setId(int userId) {
         this.userId = userId;
     }
 

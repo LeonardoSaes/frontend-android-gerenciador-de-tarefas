@@ -1,4 +1,4 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +14,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.leonardosaes.gerenciador.api.ApiService;
+import com.leonardosaes.gerenciador.R;
+import com.leonardosaes.gerenciador.api.RetrofitClient;
+import com.leonardosaes.gerenciador.adapter.TarefaAdapter;
+import com.leonardosaes.gerenciador.models.Task;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 

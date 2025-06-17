@@ -1,16 +1,18 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.google.gson.annotations.SerializedName;
+import com.leonardosaes.gerenciador.utils.tagEnum;
+
 public class Task implements Serializable {
     private Long id;
     private String titulo;
     @SerializedName("descricao")
     private String descricao;
     private String statusTarefa;
-    private tagEnum tagEnum;
+    private com.leonardosaes.gerenciador.utils.tagEnum tagEnum;
     private LocalDate prazoFinal;
     @SerializedName("usuario_id")
     private Long usuarioId;

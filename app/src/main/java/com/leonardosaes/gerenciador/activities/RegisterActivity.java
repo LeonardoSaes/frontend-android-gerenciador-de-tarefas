@@ -1,4 +1,4 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -7,15 +7,24 @@ import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import com.leonardosaes.gerenciador.R;
+import com.leonardosaes.gerenciador.models.RegisterRequest;
+import com.leonardosaes.gerenciador.models.RegisterResponse;
+import com.leonardosaes.gerenciador.api.ApiService;
+import com.leonardosaes.gerenciador.api.RetrofitClient;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import java.io.IOException; // Adicionar este import
 
 public class RegisterActivity extends AppCompatActivity {
 
     private TextInputEditText editNome, editEmail, editSenha;
     private Button btnRegister;
     private ApiService apiService;
+
+    private static final String TAG = "RegisterActivity"; // Adicionar TAG para logs
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,13 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        // Você pode adicionar mais validações aqui, como força da senha
+        if (senha.length() < 6) { // Exemplo: senha mínima de 6 caracteres
+            Toast.makeText(this, "A senha deve ter pelo menos 6 caracteres", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         // Criar objeto RegisterRequest
         RegisterRequest registerRequest = new RegisterRequest(nome, email, senha);
 
@@ -65,38 +81,48 @@ public class RegisterActivity extends AppCompatActivity {
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                Log.d(TAG, "Código de resposta: " + response.code()); // Log do código de resposta
+                Log.d(TAG, "Mensagem HTTP da resposta: " + response.message()); // Log da mensagem HTTP
+
                 if (response.isSuccessful()) {
+                    // Cadastro bem-sucedido
                     RegisterResponse registerResponse = response.body();
                     if (registerResponse != null) {
-                        // Registo bem-sucedido
-                        String message = registerResponse.getMessage();
-                        int userId = registerResponse.getUserId();
+                        // Usar getMensagem() e getId() conforme a RegisterResponse que definimos
+                        String message = registerResponse.getMensagem(); // Usar getMensagem()
+                        int userId = registerResponse.getId();           // Usar getId()
+
                         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
-                        Log.d("RegisterActivity", "User ID: " + userId);
+                        Log.d(TAG, "User ID: " + userId);
                         // Navegar para a tela de login
                         finish(); // Encerra a RegisterActivity e volta para a tela anterior (LoginActivity)
-                        // Ou navegar para a tela de lista de tarefas, se desejar
-                        // Intent intent = new Intent(RegisterActivity.this, ListaTarefasActivity.class);
-                        // startActivity(intent);
-                        // finish();
                     } else {
-                        // Erro no registo (resposta nula)
-                        Toast.makeText(RegisterActivity.this, "Erro ao realizar registo", Toast.LENGTH_SHORT).show();
+                        // Erro no registo (resposta nula) - Cenário improvável se isSuccessful for true
+                        Toast.makeText(RegisterActivity.this, "Erro ao realizar registo: resposta do servidor vazia", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Resposta isSuccessful, mas corpo está nulo.");
                     }
                 } else {
-                    // Erro no registo (código de resposta diferente de 200)
-                    Toast.makeText(RegisterActivity.this, "Erro ao realizar registo: " + response.message(), Toast.LENGTH_SHORT).show();
-                    Log.e("RegisterActivity", "Erro na resposta: " + response.code() + " - " + response.message());
+                    // Erro no registo (código de resposta diferente de 2xx)
+                    String errorMessage = "Erro desconhecido ao registrar.";
+                    try {
+                        if (response.errorBody() != null) {
+                            errorMessage = response.errorBody().string(); // Tenta obter a mensagem de erro do corpo
+                            Log.e(TAG, "Corpo do erro: " + errorMessage); // Loga o corpo do erro
+                        }
+                    } catch (IOException e) {
+                        Log.e(TAG, "Erro ao ler corpo do erro: " + e.getMessage(), e);
+                    }
+                    Toast.makeText(RegisterActivity.this, "Erro ao realizar registo: " + errorMessage, Toast.LENGTH_LONG).show();
+                    Log.e(TAG, "Erro na resposta: " + response.code() + " - " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                // Erro na requisição
+                // Erro na requisição (problemas de rede, servidor fora do ar, etc.)
                 Toast.makeText(RegisterActivity.this, "Erro de conexão: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("RegisterActivity", "Erro na requisição: " + t.getMessage(), t);
+                Log.e(TAG, "Erro na requisição: " + t.getMessage(), t); // Loga a exceção completa
             }
         });
     }
 }
-

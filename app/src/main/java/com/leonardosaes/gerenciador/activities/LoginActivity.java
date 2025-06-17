@@ -1,4 +1,4 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,10 +6,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.TextView; // Importar TextView
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import com.leonardosaes.gerenciador.api.ApiService;
+import com.leonardosaes.gerenciador.models.LoginRequest;
+import com.leonardosaes.gerenciador.models.LoginResponse;
+import com.leonardosaes.gerenciador.R;
+import com.leonardosaes.gerenciador.api.RetrofitClient;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextInputEditText editEmail, editSenha;
     private Button btnLogin;
-    private TextView textRegister;
+    private TextView textRegister; // Declarar TextView
     private ApiService apiService;
 
     @Override
@@ -30,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         editEmail = findViewById(R.id.edit_email);
         editSenha = findViewById(R.id.edit_senha);
         btnLogin = findViewById(R.id.btn_login);
-        textRegister = findViewById(R.id.text_register);
+        textRegister = findViewById(R.id.text_register); // Inicializar TextView
 
         // Inicializar ApiService
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
@@ -43,11 +49,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Configurar clique do TextView "textRegister" para ir para RegisterActivity
         textRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -76,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginResponse != null && loginResponse.getToken() != null) {
                         // Login bem-sucedido
                         String token = loginResponse.getToken();
-                        int userId = loginResponse.getId(); // Supondo que a classe LoginResponse tenha um metodo getId()
+                        int userId = loginResponse.getId(); // Supondo que LoginResponse.getId() exista e retorne o ID do usuário
                         String nomeUsuario = loginResponse.getNomeUsuario();
                         // Salvar o token e o ID do usuário
                         SharedPreferences sharedPreferences = getSharedPreferences("auth_prefs", MODE_PRIVATE);

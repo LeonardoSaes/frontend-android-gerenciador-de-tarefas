@@ -1,4 +1,4 @@
-package com.leonardosaes.gerenciador;
+package com.leonardosaes.gerenciador.utils;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -20,5 +20,4 @@ public class LocalDateDeserializer implements JsonDeserializer<LocalDate> {
             throw new JsonParseException("Erro ao desserializar LocalDate: " + e.getMessage(), e);
         }
     }
-
 }

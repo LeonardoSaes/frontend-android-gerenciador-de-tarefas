@@ -1,6 +1,4 @@
-package com.leonardosaes.gerenciador;
-
-import java.time.LocalDateTime;
+package com.leonardosaes.gerenciador.models;
 
 public class TaskRequest {
     private String titulo;

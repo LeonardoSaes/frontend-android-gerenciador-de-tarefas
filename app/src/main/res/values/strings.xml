@@ -11,5 +11,10 @@
     <string name="buscar_tarefas">Buscar tarefas</string>
     <string name="tarefas">Tarefas</string>
     <string name="id_usuario">ID Usuario</string>
-    <string name="tag">Tag</string>
+    <string name="tag">Prioridade</string>
+    <string name="prioridade">Prioridade: </string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
 </resources>
